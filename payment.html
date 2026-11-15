@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment | NCK SHOP</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b09;color:white;font-family:Arial}
+header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #24402d}
+.logo{font-size:24px;font-weight:bold;color:#39e879}
+nav a{color:white;text-decoration:none;margin-left:12px}
+main{max-width:650px;margin:40px auto;padding:20px}
+h1{color:#39e879}
+.box{background:#111a13;border:1px solid #24402d;padding:22px;border-radius:12px}
+.row{display:flex;justify-content:space-between;gap:15px;padding:13px 0;border-bottom:1px solid #24402d}
+.total{font-size:25px;color:#39e879;font-weight:bold}
+.note{background:#18251b;padding:15px;border-radius:8px;line-height:1.7;margin-top:20px;color:#d8e8dc}
+button{width:100%;padding:15px;background:#39e879;color:#071009;border:0;border-radius:7px;font-weight:bold;margin-top:20px;font-size:15px}
+footer{text-align:center;color:#777;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">NCK SHOP</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+</nav>
+</header>
+
+<main>
+<h1>PAYMENT</h1>
+<p>Semak pesanan anda sebelum dihantar.</p>
+
+<div class="box">
+<div id="details">Memuatkan pesanan...</div>
+
+<div class="note">
+<strong>MAKLUMAT PEMBAYARAN</strong><br><br>
+Bank: MASUKKAN NAMA BANK<br>
+Nama akaun: MASUKKAN NAMA PEMILIK<br>
+Nombor akaun: MASUKKAN NOMBOR AKAUN<br><br>
+Sila hubungi pihak NCK SHOP untuk pengesahan pembayaran.
+</div>
+
+<button onclick="sendOrder()">HANTAR PESANAN MELALUI WHATSAPP</button>
+</div>
+</main>
+
+<footer>© 2026 NCK SHOP</footer>
+
+<script>
+let order=JSON.parse(localStorage.getItem("nck_order")||"null");
+
+function showOrder(){
+let box=document.getElementById("details");
+
+if(!order){
+box.innerHTML="Tiada pesanan dijumpai. Sila buat pesanan dahulu.";
+return;
+}
+
+let total=0;
+let html=`
+<div class="row"><span>Nama</span><strong>${safe(order.name)}</strong></div>
+<div class="row"><span>Telefon</span><strong>${safe(order.phone)}</strong></div>
+<div class="row"><span>Alamat</span><strong>${safe(order.address)}</strong></div>
+<div class="row"><span>Bayaran</span><strong>${safe(order.payment)}</strong></div>
+<h3>Produk dipesan</h3>`;
+
+order.cart.forEach(item=>{
+let subtotal=item.price*item.qty;
+total+=subtotal;
+html+=`<div class="row">
+<span>${safe(item.name)} (${safe(item.size)}) x ${item.qty}</span>
+<strong>RM ${subtotal.toFixed(2)}</strong>
+</div>`;
+});
+
+html+=`<div class="row">
+<strong>JUMLAH BAYARAN</strong>
+<strong class="total">RM ${total.toFixed(2)}</strong>
+</div>`;
+
+box.innerHTML=html;
+}
+
+function safe(value){
+return String(value||"").replace(/[&<>"']/g,function(c){
+return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+});
+}
+
+function sendOrder(){
+if(!order){
+alert("Tiada pesanan. Sila buat checkout dahulu.");
+location.href="shop.html";
+return;
+}
+
+let message="PESANAN NCK SHOP\n\n";
+message+="Nama: "+order.name+"\n";
+message+="Telefon: "+order.phone+"\n";
+message+="Alamat: "+order.address+"\n";
+message+="Bayaran: "+order.payment+"\n\n";
+message+="PRODUK:\n";
+
+order.cart.forEach(item=>{
+message+=item.name+" - "+item.size+" x "+item.qty+"\n";
+});
+
+message+="\nJumlah: RM "+Number(order.total).toFixed(2);
+
+let whatsappNumber="60123456789";
+let url="https://wa.me/"+whatsappNumber+"?text="+encodeURIComponent(message);
+window.open(url,"_blank");
+}
+
+showOrder();
+</script>
+</body>
+</html>
