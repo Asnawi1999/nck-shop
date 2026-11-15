@@ -3,93 +3,38 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NCK SHOP</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- background:#080b09;
- color:white;
- font-family:Arial,sans-serif;
-}
-header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:20px;
- border-bottom:1px solid #1d3829;
-}
-.logo{font-size:24px;font-weight:bold;color:#39e879}
-.menu a{
- color:white;text-decoration:none;
- margin-left:15px;font-size:14px;
-}
-.hero{
- max-width:850px;
- margin:70px auto;
- padding:25px;
- text-align:center;
-}
-.hero h1{font-size:42px;margin-bottom:10px}
-.hero h1 span{color:#39e879}
-.hero p{color:#aaa;line-height:1.7}
-.btn{
- display:inline-block;
- margin-top:20px;
- padding:15px 30px;
- background:#39e879;
- color:#061009;
- text-decoration:none;
- font-weight:bold;
- border-radius:8px;
-}
-.feature{
- margin:30px auto;
- max-width:850px;
- padding:25px;
- background:#101713;
- border:1px solid #1e392a;
- border-radius:12px;
- text-align:center;
-}
-footer{
- text-align:center;
- padding:30px;
- color:#777;
- border-top:1px solid #1d3829;
- font-size:13px;
-}
-@media(max-width:600px){
- .hero h1{font-size:32px}
- .menu a{margin-left:8px;font-size:12px}
-}
+body{margin:0;background:#080b09;color:white;font-family:Arial}
+header{padding:22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #24402d}
+.logo{font-size:25px;font-weight:bold;color:#39e879}
+nav a{color:white;text-decoration:none;margin-left:15px;font-size:14px}
+main{min-height:75vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px}
+h1{font-size:clamp(38px,8vw,65px)}
+h1 span{color:#39e879}
+p{color:#aaa;line-height:1.7}
+.btn{display:inline-block;background:#39e879;color:#071009;padding:15px 30px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:20px}
+footer{text-align:center;padding:25px;color:#777;border-top:1px solid #24402d}
 </style>
 </head>
 <body>
-
 <header>
- <div class="logo">NCK SHOP</div>
- <nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="shop.html">Shop</a>
- </nav>
+<div class="logo">NCK SHOP</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+</nav>
 </header>
-
-<section class="hero">
- <h1>WELCOME TO <span>NCK SHOP</span></h1>
- <p>Discover your style. Quality products, simple shopping and great experience.</p>
- <a class="btn" href="shop.html">SHOP NOW</a>
-</section>
-
-<section class="feature">
- <h2>Welcome to NCK SHOP</h2>
- <p>Your style. Your choice. Your shop.</p>
-</section>
-
-<footer>
-© 2026 NCK SHOP. All Rights Reserved.
-</footer>
-
+<main>
+<div>
+<p>OFFICIAL ONLINE STORE</p>
+<h1>WELCOME TO<br><span>NCK SHOP</span></h1>
+<p>Discover your style. Quality products and simple shopping experience.</p>
+<a class="btn" href="shop.html">ENTER SHOP</a>
+</div>
+</main>
+<footer>© 2026 NCK SHOP. All Rights Reserved.</footer>
 </body>
 </html>
