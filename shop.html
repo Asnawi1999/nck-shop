@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop | NCK SHOP</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b09;color:white;font-family:Arial}
+header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #24402d}
+.logo{font-size:24px;font-weight:bold;color:#39e879}
+nav a{color:white;text-decoration:none;margin-left:12px}
+main{max-width:850px;margin:40px auto;padding:20px}
+h1{color:#39e879}
+.product{background:#111a13;border:1px solid #24402d;padding:20px;border-radius:12px;max-width:400px}
+.image{height:240px;background:#193421;display:flex;align-items:center;justify-content:center;color:#39e879;font-size:40px;font-weight:bold;border-radius:10px}
+.price{color:#39e879;font-size:25px;font-weight:bold}
+select{width:100%;padding:13px;background:#080b09;color:white;border:1px solid #39e879;border-radius:7px}
+button{width:100%;padding:14px;background:#39e879;border:0;border-radius:7px;font-weight:bold;margin-top:18px}
+footer{text-align:center;color:#777;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">NCK SHOP</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="cart.html">Cart</a>
+</nav>
+</header>
+
+<main>
+<h1>OUR PRODUCT</h1>
+<p>Choose your favourite product.</p>
+
+<div class="product">
+<div class="image">NCK</div>
+<h2>NCK Premium T-Shirt</h2>
+<p>Premium quality shirt.</p>
+<div class="price">RM 59.90</div>
+
+<label for="size">Choose Size</label>
+<select id="size">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>2XL</option>
+</select>
+
+<button onclick="addCart()">ADD TO CART</button>
+</div>
+</main>
+
+<footer>© 2026 NCK SHOP</footer>
+
+<script>
+function addCart(){
+let size=document.getElementById("size").value;
+let cart=JSON.parse(localStorage.getItem("nck_cart")||"[]");
+let item=cart.find(x=>x.name==="NCK Premium T-Shirt"&&x.size===size);
+if(item){item.qty++}
+else{cart.push({name:"NCK Premium T-Shirt",price:59.90,size:size,qty:1})}
+localStorage.setItem("nck_cart",JSON.stringify(cart));
+alert("Product added to cart!");
+window.location.href="cart.html";
+}
+</script>
+</body>
+</html>
