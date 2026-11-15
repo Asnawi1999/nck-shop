@@ -56,17 +56,38 @@ footer{text-align:center;color:#777;padding:25px}
 
 <footer>© 2026 NCK SHOP</footer>
 
+
 <script>
 function addCart(){
-let size=document.getElementById("size").value;
-let cart=JSON.parse(localStorage.getItem("nck_cart")||"[]");
-let item=cart.find(x=>x.name==="NCK Premium T-Shirt"&&x.size===size);
-if(item){item.qty++}
-else{cart.push({name:"NCK Premium T-Shirt",price:59.90,size:size,qty:1})}
-localStorage.setItem("nck_cart",JSON.stringify(cart));
-alert("Product added to cart!");
-window.location.href="cart.html";
+ const size = document.getElementById("size").value;
+
+ let cart = JSON.parse(localStorage.getItem("nck_cart") || "[]");
+
+ let item = cart.find(x =>
+   x.name === "NCK Premium T-Shirt" &&
+   x.size === size
+ );
+
+ if(item){
+   item.qty = Number(item.qty) + 1;
+ }else{
+   cart.push({
+     name:"NCK Premium T-Shirt",
+     price:59.90,
+     size:size,
+     qty:1
+   });
+ }
+
+ localStorage.setItem("nck_cart", JSON.stringify(cart));
+
+ alert("Produk berjaya dimasukkan!");
+ window.location.href = "cart.html";
 }
+</script>
+</body>
+</html>
+
 </script>
 </body>
 </html>
