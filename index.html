@@ -4,114 +4,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NCK SHOP - Official Store</title>
+<title>NCK SHOP</title>
 <style>
-:root{
- --green:#39e879;
- --black:#080b09;
- --panel:#111813;
- --muted:#a3b1a7;
-}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
- margin:0;background:var(--black);color:white;
+ margin:0;
+ background:#080b09;
+ color:white;
  font-family:Arial,sans-serif;
 }
 header{
- position:sticky;top:0;z-index:10;
- display:flex;justify-content:space-between;
- align-items:center;gap:12px;
- padding:17px 6%;
- background:#080b09ee;
- border-bottom:1px solid #25342a;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:20px;
+ border-bottom:1px solid #1d3829;
 }
-.logo{font-size:24px;font-weight:900;color:var(--green)}
-nav{display:flex;gap:17px;align-items:center}
-nav a{
- color:white;text-decoration:none;font-size:13px;
- font-weight:bold;
-}
-nav a:hover{color:var(--green)}
-.cart{
- background:var(--green);color:#071009;
- border:0;padding:10px 13px;border-radius:8px;
- font-weight:bold;cursor:pointer;
+.logo{font-size:24px;font-weight:bold;color:#39e879}
+.menu a{
+ color:white;text-decoration:none;
+ margin-left:15px;font-size:14px;
 }
 .hero{
- min-height:400px;padding:85px 20px;
- display:flex;flex-direction:column;
- align-items:center;justify-content:center;
+ max-width:850px;
+ margin:70px auto;
+ padding:25px;
  text-align:center;
- background:radial-gradient(ellipse at center,#173b25,#080b09 70%);
 }
-.tag{color:var(--green);letter-spacing:3px;font-size:12px}
-.hero h1{font-size:clamp(35px,7vw,60px);margin:18px 0}
-.hero h1 span{color:var(--green)}
-.hero p{color:var(--muted);line-height:1.7}
+.hero h1{font-size:42px;margin-bottom:10px}
+.hero h1 span{color:#39e879}
+.hero p{color:#aaa;line-height:1.7}
 .btn{
- display:inline-block;padding:14px 25px;
- background:var(--green);color:#071009;
- text-decoration:none;border:0;border-radius:8px;
- font-weight:bold;cursor:pointer;
+ display:inline-block;
+ margin-top:20px;
+ padding:15px 30px;
+ background:#39e879;
+ color:#061009;
+ text-decoration:none;
+ font-weight:bold;
+ border-radius:8px;
 }
-section{padding:55px 7%;scroll-margin-top:75px}
-.heading{text-align:center;margin-bottom:30px}
-.heading h2{font-size:30px}
-.heading span{color:var(--green)}
-.product{
- max-width:800px;margin:auto;
- background:var(--panel);
- border:1px solid #2b3d30;
- border-radius:17px;padding:20px;
- display:grid;grid-template-columns:1fr 1fr;gap:25px;
+.feature{
+ margin:30px auto;
+ max-width:850px;
+ padding:25px;
+ background:#101713;
+ border:1px solid #1e392a;
+ border-radius:12px;
+ text-align:center;
 }
-.product img{
- width:100%;height:300px;object-fit:cover;
- border-radius:12px;background:#203629;
-}
-.product h3{font-size:25px}
-.price{font-size:27px;color:var(--green);font-weight:bold}
-.muted{color:var(--muted);line-height:1.7}
-select,input,textarea{
- width:100%;padding:13px;margin:8px 0;
- color:white;background:#080b09;
- border:1px solid #394b3e;border-radius:8px;
- font:inherit;
-}
-label{display:block;margin-top:12px;font-size:14px}
-button{font:inherit}
-.checkout{
- max-width:650px;margin:auto;
- background:var(--panel);padding:25px;
- border:1px solid #2b3d30;border-radius:15px;
-}
-.total{
- display:flex;justify-content:space-between;
- padding:17px 0;border-top:1px solid #394b3e;
- margin-top:15px;font-size:19px;
-}
-.payment-option{
- display:flex;gap:10px;align-items:center;
- padding:13px;border:1px solid #394b3e;
- border-radius:8px;margin:9px 0;
-}
-.payment-option input{width:auto;margin:0}
-.payment-option label{margin:0}
 footer{
- padding:30px;text-align:center;
- border-top:1px solid #26352b;color:#849188;
+ text-align:center;
+ padding:30px;
+ color:#777;
+ border-top:1px solid #1d3829;
  font-size:13px;
 }
-.hidden{display:none}
-@media(max-width:650px){
- header{padding:14px 4%;flex-wrap:wrap}
- .logo{font-size:20px}
- nav{gap:11px}
- nav a{font-size:11px}
- .product{grid-template-columns:1fr}
- .product img{height:260px}
- section{padding:40px 5%}
+@media(max-width:600px){
+ .hero h1{font-size:32px}
+ .menu a{margin-left:8px;font-size:12px}
 }
 </style>
 </head>
@@ -119,190 +70,26 @@ footer{
 
 <header>
  <div class="logo">NCK SHOP</div>
- <nav>
-  <a href="#home">HOME</a>
-  <a href="#shop">SHOP</a>
-  <a href="#buy">BUY</a>
+ <nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
  </nav>
- <button class="cart" onclick="goCheckout()">
-  CART (<span id="cartCount">0</span>)
- </button>
 </header>
 
-<main>
-<section class="hero" id="home">
- <div class="tag">WELCOME TO OFFICIAL STORE</div>
- <h1>DISCOVER <span>NCK SHOP</span></h1>
- <p>Premium Quality. Modern Style. Exclusive Collection.</p>
- <a class="btn" href="#shop">EXPLORE SHOP</a>
+<section class="hero">
+ <h1>WELCOME TO <span>NCK SHOP</span></h1>
+ <p>Discover your style. Quality products, simple shopping and great experience.</p>
+ <a class="btn" href="shop.html">SHOP NOW</a>
 </section>
 
-<section id="shop">
- <div class="heading">
-  <div class="tag">OUR COLLECTION</div>
-  <h2>FEATURED <span>PRODUCT</span></h2>
- </div>
-
- <div class="product">
-  <img src="gambar-nck.jpg" alt="NCK Premium Product">
-  <div>
-   <div class="tag">NCK EXCLUSIVE</div>
-   <h3>NCK PREMIUM T-SHIRT</h3>
-   <div class="price">RM59.90</div>
-   <p class="muted">
-    Produk eksklusif NCK SHOP. Rekaan moden
-    dengan gaya premium untuk kegunaan harian.
-   </p>
-
-   <label>PILIH SAIZ</label>
-   <select id="size">
-    <option value="S">S</option>
-    <option value="M">M</option>
-    <option value="L">L</option>
-    <option value="XL">XL</option>
-    <option value="XXL">XXL</option>
-   </select>
-
-   <label>KUANTITI</label>
-   <input id="qty" type="number" min="1" max="20" value="1">
-
-   <button class="btn" style="width:100%"
-    onclick="addCart()">ADD TO CART</button>
-   <p class="muted" style="font-size:12px">
-    Harga contoh. Sila kemas kini sebelum jualan.
-   </p>
-  </div>
- </div>
+<section class="feature">
+ <h2>Welcome to NCK SHOP</h2>
+ <p>Your style. Your choice. Your shop.</p>
 </section>
-
-<section id="buy">
- <div class="heading">
-  <div class="tag">ORDER YOUR PRODUCT</div>
-  <h2>BUY <span>NOW</span></h2>
- </div>
- <div class="checkout">
-  <h3>Your Shopping Cart</h3>
-  <p id="cartInfo" class="muted">Cart anda masih kosong.</p>
-  <div class="total">
-   <strong>TOTAL</strong>
-   <strong class="price" id="total">RM0.00</strong>
-  </div>
-  <button class="btn" style="width:100%"
-   onclick="goCheckout()">PROCEED TO CHECKOUT</button>
- </div>
-</section>
-
-<section id="checkout">
- <div class="heading">
-  <div class="tag">COMPLETE YOUR ORDER</div>
-  <h2>CHECK<span>OUT</span></h2>
- </div>
- <div class="checkout">
-  <form id="orderForm">
-   <label>Nama penuh</label>
-   <input id="customer" required placeholder="Nama anda">
-
-   <label>Nombor telefon</label>
-   <input id="phone" required type="tel"
-    placeholder="Contoh: 0123456789">
-
-   <label>Alamat penghantaran</label>
-   <textarea id="address" required
-    placeholder="Alamat penuh"></textarea>
-
-   <label>Kaedah pembayaran</label>
-   <div class="payment-option">
-    <input type="radio" name="payment"
-     value="Bank Transfer" checked>
-    <label>Bank Transfer</label>
-   </div>
-   <div class="payment-option">
-    <input type="radio" name="payment"
-     value="Cash on Delivery">
-    <label>Cash on Delivery (COD)</label>
-   </div>
-
-   <div class="total">
-    <strong>ORDER TOTAL</strong>
-    <strong class="price" id="checkoutTotal">RM0.00</strong>
-   </div>
-
-   <button class="btn" type="submit" style="width:100%">
-    CONFIRM ORDER
-   </button>
-   <p class="muted" style="font-size:12px">
-    Pesanan akan dihantar melalui WhatsApp untuk pengesahan.
-   </p>
-  </form>
- </div>
-</section>
-</main>
 
 <footer>
- <div class="logo">NCK SHOP</div>
- <p>Premium. Exclusive. Official.</p>
- © 2026 NCK SHOP. All Rights Reserved.
+© 2026 NCK SHOP. All Rights Reserved.
 </footer>
 
-<script>
-const PRICE=59.90;
-let cart=0;
-let selectedSize="";
-
-function money(n){
- return "RM"+n.toFixed(2);
-}
-function addCart(){
- const q=parseInt(document.getElementById("qty").value);
- if(!Number.isInteger(q)||q<1||q>20){
-  alert("Masukkan kuantiti 1 hingga 20.");
-  return;
- }
- selectedSize=document.getElementById("size").value;
- cart+=q;
- document.getElementById("cartCount").textContent=cart;
- updateCart();
- alert("Produk berjaya dimasukkan ke cart!");
-}
-function updateCart(){
- document.getElementById("cartInfo").textContent=
- cart+" x NCK Premium T-Shirt (Saiz "+selectedSize+")";
- document.getElementById("total").textContent=money(cart*PRICE);
- document.getElementById("checkoutTotal").textContent=money(cart*PRICE);
-}
-function goCheckout(){
- if(cart===0){
-  alert("Sila tambah produk ke cart dahulu.");
-  location.hash="shop";
-  return;
- }
- location.hash="checkout";
-}
-document.getElementById("orderForm").addEventListener("submit",function(e){
- e.preventDefault();
- if(cart===0){
-  alert("Cart masih kosong.");
-  return;
- }
- const name=document.getElementById("customer").value;
- const phone=document.getElementById("phone").value;
- const address=document.getElementById("address").value;
- const payment=document.querySelector('input[name="payment"]:checked').value;
-
- const message=
- "NCK SHOP - NEW ORDER%0A"+
- "Nama: "+name+"%0A"+
- "Telefon: "+phone+"%0A"+
- "Alamat: "+address+"%0A"+
- "Produk: NCK Premium T-Shirt%0A"+
- "Saiz: "+selectedSize+"%0A"+
- "Kuantiti: "+cart+"%0A"+
- "Jumlah: "+money(cart*PRICE)+"%0A"+
- "Pembayaran: "+payment;
-
- const whatsapp="60123456789";
- window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(message),"_blank");
-});
-</script>
 </body>
 </html>
