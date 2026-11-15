@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ms">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0e0b"><title>NCK SHOP — Admin</title>
+<style>
+:root{--bg:#0b0e0b;--surface:#121813;--surface2:#18221a;--line:#29352b;--green:#a8ed55;--white:#f5f7f2;--muted:#a1ab9f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center}.wrap{width:min(1100px,calc(100% - 40px));margin:auto}.nav{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;letter-spacing:3px;font-size:20px}.brand span{color:var(--green)}a{color:var(--green);text-decoration:none;font-size:12px}
+main{padding:38px 0 70px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px}.eyebrow{color:var(--green);font-size:10px;letter-spacing:3px;font-weight:800}h1{font-size:34px;letter-spacing:-1px;margin:9px 0}.muted{color:var(--muted);font-size:13px;line-height:1.6}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:22px;margin-top:28px}.side,.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px}.side{padding:18px;height:max-content}.side-title{font-size:10px;letter-spacing:2px;color:#778574;margin:3px 0 14px}.navitem{padding:12px;border-radius:8px;color:#bdc7ba;font-size:13px;margin:3px 0}.navitem.active{background:#24331f;color:var(--green)}
+.panel{padding:25px}.panel h2{font-size:17px;margin:0 0 5px}.panel .muted{margin-bottom:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field.full{grid-column:1/-1}label{display:block;font-size:11px;font-weight:700;color:#dce4d9;margin:0 0 8px;letter-spacing:.4px}
+input,textarea{width:100%;padding:13px 14px;border:1px solid #344135;border-radius:8px;background:#0d120e;color:white;font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--green)}
+.actions{display:flex;gap:10px;margin-top:22px}button{border:0;border-radius:8px;padding:13px 18px;font-weight:800;cursor:pointer;background:var(--green);color:#10170c}.secondary{background:#253126;color:#dcebd5}
+.preview{margin-top:15px;width:100%;max-height:250px;object-fit:contain;background:#0b100d;border:1px solid var(--line);border-radius:9px;display:none}
+.notice{margin-top:18px;padding:14px;border:1px solid #66552a;background:#211c10;color:#f4d995;border-radius:9px;font-size:12px;line-height:1.65}
+.status{margin-top:14px;color:var(--green);font-size:12px;min-height:18px}
+@media(max-width:760px){.wrap{width:calc(100% - 28px)}header{height:66px}main{padding:27px 0 45px}.head{display:block}h1{font-size:29px}.layout{grid-template-columns:1fr;gap:14px}.side{display:flex;gap:6px;overflow:auto;padding:10px}.side-title{display:none}.navitem{white-space:nowrap;margin:0;padding:10px 12px}.panel{padding:18px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.actions{flex-direction:column}.actions button{width:100%}}
+</style></head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="index.html">NCK <span>ADMIN</span></a><a href="index.html">VIEW PUBLIC STORE ↗</a></div></header>
+<main class="wrap">
+<div class="head"><div><div class="eyebrow">STORE MANAGEMENT</div><h1>Product dashboard</h1><div class="muted">Manage your single featured product.</div></div></div>
+<div class="layout">
+<aside class="side"><div class="side-title">WORKSPACE</div><div class="navitem active">▣ &nbsp; Product</div><div class="navitem">▤ &nbsp; Orders (coming soon)</div><div class="navitem">◷ &nbsp; Sales (coming soon)</div></aside>
+<section class="panel"><h2>Product details</h2><div class="muted">Edit the product shown on your public storefront.</div>
+<div class="grid">
+<div class="field full"><label for="name">PRODUCT NAME</label><input id="name" value="Essential Everyday Tee"></div>
+<div class="field full"><label for="desc">DESCRIPTION</label><textarea id="desc" rows="3">A clean everyday essential. Minimal design, comfortable fit and made to style your way.</textarea></div>
+<div class="field"><label for="price">PRICE (RM)</label><input id="price" type="number" min="0" step="0.01" value="59.00"></div>
+<div class="field"><label for="stock">STOCK QUANTITY (DISPLAY ONLY)</label><input id="stock" type="number" min="0" value="20"></div>
+<div class="field full"><label for="imageFile">PRODUCT IMAGE</label><input id="imageFile" type="file" accept="image/*"><img id="preview" class="preview" alt="Product preview"></div>
+</div>
+<div class="actions"><button onclick="saveProduct()">SAVE CHANGES</button><button class="secondary" onclick="resetProduct()">RESET SAMPLE</button></div>
+<div class="status" id="status" aria-live="polite"></div>
+<div class="notice"><b>Prototype limitation:</b> This demo has no secure owner login, online database, live stock control, order management, sales tracking or payment processing. Data is saved only in this browser on this device using local storage. Do not publish this admin page as a secure private dashboard yet. These features require a protected backend and database before the shop goes live.</div>
+</section></div></main>
+<script>
+const defaults={name:"Essential Everyday Tee",desc:"A clean everyday essential. Minimal design, comfortable fit and made to style your way.",price:"59.00",stock:"20",image:""};
+const nameEl=document.getElementById("name"),descEl=document.getElementById("desc"),priceEl=document.getElementById("price"),stockEl=document.getElementById("stock"),preview=document.getElementById("preview");
+let imageData="";
+function getSaved(){try{return JSON.parse(localStorage.getItem("nckProduct")||"{}")}catch(e){return {}}}
+function load(){let p={...defaults,...getSaved()};nameEl.value=p.name;descEl.value=p.desc;priceEl.value=p.price;stockEl.value=p.stock;if(p.image){imageData=p.image;preview.src=imageData;preview.style.display="block"}}
+document.getElementById("imageFile").addEventListener("change",e=>{let f=e.target.files[0];if(!f)return;if(f.size>1200000){alert("For this demo, choose an image smaller than 1.2MB.");e.target.value="";return}let r=new FileReader();r.onload=()=>{imageData=r.result;preview.src=imageData;preview.style.display="block"};r.readAsDataURL(f)});
+function saveProduct(){let p={name:nameEl.value.trim(),desc:descEl.value.trim(),price:priceEl.value,stock:stockEl.value,image:imageData};if(!p.name||p.price===""||Number(p.price)<0){alert("Please enter a product name and valid price.");return}try{localStorage.setItem("nckProduct",JSON.stringify(p));document.getElementById("status").textContent="Saved in this browser. Open the public page in this same browser to preview."; }catch(e){alert("Could not save. Try a smaller image.")}}
+function resetProduct(){localStorage.removeItem("nckProduct");imageData="";load();preview.style.display="none";document.getElementById("status").textContent="Sample product restored."}
+load();
+</script></body></html>
