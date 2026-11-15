@@ -3,120 +3,61 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NCK SHOP | Official Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NCK SHOP Official</title>
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;background:#080b09;color:#fff;
+ margin:0;background:#080b09;color:white;
  font-family:Arial,sans-serif;
 }
 header{
- padding:20px 7%;display:flex;justify-content:space-between;
- align-items:center;border-bottom:1px solid #202a23;
+ padding:25px 8%;border-bottom:1px solid #26352b;
 }
-.logo{font-size:25px;font-weight:900;color:#36e879}
-.logo span{color:white}
-nav a{color:#ddd;text-decoration:none;margin-left:20px}
-.hero{text-align:center;padding:65px 20px 35px}
-.hero small{color:#36e879;letter-spacing:3px}
-.hero h1{font-size:42px;margin:15px 0}
-.hero p{color:#aaa;line-height:1.6}
-.product{
- max-width:950px;margin:25px auto 70px;padding:20px;
- display:grid;grid-template-columns:1fr 1fr;gap:35px;
- background:#101612;border:1px solid #26372b;
- border-radius:20px;
+.logo{font-size:27px;font-weight:bold;color:#39e879}
+main{
+ max-width:900px;margin:auto;
+ padding:65px 20px;text-align:center;
 }
-.product-image{
- min-height:350px;border-radius:15px;
- background:linear-gradient(145deg,#173b25,#080b09);
- display:flex;align-items:center;justify-content:center;
- font-size:100px;
+.photo{
+ width:100%;height:350px;object-fit:cover;
+ border-radius:18px;border:1px solid #294332;
+ background:#14251a;
 }
-.details{padding:20px 10px}
-.tag{color:#36e879;font-size:12px;letter-spacing:2px}
-h2{font-size:30px;margin:15px 0}
-.price{font-size:28px;color:#36e879;font-weight:bold}
-.description{color:#aaa;line-height:1.8}
-select{
- width:100%;padding:14px;margin:12px 0;
- background:#080b09;color:white;border:1px solid #405447;
- border-radius:9px;
+h1{font-size:38px;margin:35px 0 12px}
+h1 span{color:#39e879}
+p{color:#a5b5aa;line-height:1.7}
+.btn{
+ display:inline-block;margin-top:25px;
+ padding:15px 35px;background:#39e879;
+ color:#071009;text-decoration:none;
+ font-weight:bold;border-radius:9px;
 }
-button{
- width:100%;padding:16px;border:0;border-radius:10px;
- background:#36e879;color:#061009;font-size:16px;
- font-weight:bold;cursor:pointer;margin-top:12px;
-}
-button:hover{background:#20c963}
 footer{
- text-align:center;padding:30px;color:#777;
- border-top:1px solid #202a23;font-size:13px;
+ text-align:center;padding:25px;
+ color:#78877d;border-top:1px solid #26352b;
 }
-@media(max-width:650px){
- header{padding:18px 5%}
- nav a{margin-left:10px;font-size:13px}
- .hero h1{font-size:32px}
- .product{margin:15px;grid-template-columns:1fr}
- .product-image{min-height:280px}
- .details{padding:10px}
+@media(max-width:600px){
+ main{padding:40px 18px}
+ .photo{height:240px}
+ h1{font-size:29px}
 }
 </style>
 </head>
 <body>
-
 <header>
- <div class="logo">NCK <span>SHOP</span></div>
- <nav><a href="#produk">Produk</a></nav>
+ <div class="logo">NCK SHOP</div>
 </header>
-
-<section class="hero">
- <small>WELCOME TO NCK SHOP</small>
- <h1>Gaya Anda. Pilihan Anda.</h1>
- <p>Selamat datang ke kedai rasmi NCK SHOP.<br>
- Kualiti premium, gaya eksklusif.</p>
-</section>
-
-<section class="product" id="produk">
- <div class="product-image">👕</div>
-
- <div class="details">
-  <div class="tag">NCK EXCLUSIVE COLLECTION</div>
-  <h2>T-Shirt NCK 2026</h2>
-  <div class="price">RM45.00</div>
-
-  <p class="description">
-   Baju eksklusif NCK SHOP dengan rekaan moden.
-   Selesa dipakai dan sesuai untuk gaya harian.
-  </p>
-
-  <label for="size">Pilih saiz:</label>
-  <select id="size">
-   <option value="S">S</option>
-   <option value="M">M</option>
-   <option value="L">L</option>
-   <option value="XL">XL</option>
-   <option value="XXL">XXL</option>
-  </select>
-
-  <button onclick="buyNow()">BELI SEKARANG</button>
- </div>
-</section>
-
+<main>
+ <img class="photo" src="gambar-nck.jpg" alt="NCK SHOP">
+ <h1>WELCOME TO <span>NCK SHOP</span></h1>
+ <p>Simple. Premium. Exclusive.</p>
+ <a class="btn" href="https://wa.me/60123456789">
+  CONTACT US
+ </a>
+</main>
 <footer>
- © 2026 NCK SHOP. ALL RIGHTS RESERVED.
+ © 2026 NCK SHOP. All Rights Reserved.
 </footer>
-
-<script>
-function buyNow(){
- const size=document.getElementById("size").value;
- const phone="+60199011670";
- const message="Salam NCK SHOP, saya nak beli NCK T-Shirt. Saiz: "+size;
- window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank");
-}
-</script>
-
 </body>
 </html>
-
