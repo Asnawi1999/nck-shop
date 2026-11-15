@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | NCK SHOP</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #080808;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 550px;
+  margin: 25px auto;
+  padding: 25px;
+  background: #151515;
+  border: 1px solid #00ff66;
+  border-radius: 16px;
+}
+
+.logo {
+  text-align: center;
+  color: #00ff66;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #00ff66;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 13px;
+  background: #080808;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.summary {
+  background: #080808;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  line-height: 1.8;
+}
+
+.total {
+  color: #00ff66;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  background: #00ff66;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #00ff66;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">NCK SHOP</div>
+<h2>CHECKOUT</h2>
+
+<form id="checkoutForm">
+
+<label>Nama Penuh</label>
+<input type="text" id="customerName"
+placeholder="Masukkan nama penuh" required>
+
+<label>Nombor Telefon</label>
+<input type="tel" id="phone"
+placeholder="Contoh: 0123456789" required>
+
+<label>Alamat Penghantaran</label>
+<textarea id="address"
+placeholder="Masukkan alamat penuh" required></textarea>
+
+<label>Kaedah Pembayaran</label>
+<select id="paymentMethod" required>
+<option value="">Pilih pembayaran</option>
+<option value="Bank Transfer">Bank Transfer</option>
+<option value="Cash On Delivery">Cash On Delivery</option>
+</select>
+
+<div class="summary">
+<h3>Ringkasan Pesanan</h3>
+<div id="orderDetails">Memuatkan pesanan...</div>
+<hr>
+Jumlah:
+<div class="total" id="totalPrice">RM0.00</div>
+</div>
+
+<button type="submit">TERUSKAN KE PAYMENT</button>
+
+</form>
+
+<a class="back" href="shop.html">← Kembali ke Shop</a>
+
+</div>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("nck_cart") || "[]");
+
+const details = document.getElementById("orderDetails");
+const totalElement = document.getElementById("totalPrice");
+
+let total = 0;
+
+if (cart.length === 0) {
+  details.innerHTML = "Tiada pesanan dijumpai.";
+} else {
+  details.innerHTML = cart.map(item => {
+    const subtotal = Number(item.price) * Number(item.qty);
+    total += subtotal;
+
+    return `
+      <p>
+        ${item.name}<br>
+        Saiz: ${item.size}<br>
+        Kuantiti: ${item.qty}<br>
+        Harga: RM${subtotal.toFixed(2)}
+      </p>
+    `;
+  }).join("");
+}
+
+totalElement.textContent = "RM" + total.toFixed(2);
+
+document.getElementById("checkoutForm")
+.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if (cart.length === 0) {
+    alert("Tiada pesanan. Sila pilih produk dahulu.");
+    return;
+  }
+
+  const order = {
+    name: document.getElementById("customerName").value,
+    phone: document.getElementById("phone").value,
+    address: document.getElementById("address").value,
+    payment: document.getElementById("paymentMethod").value,
+    items: cart,
+    total: total,
+    date: new Date().toISOString()
+  };
+
+  localStorage.setItem("nck_order", JSON.stringify(order));
+
+  window.location.href = "payment.html";
+});
+</script>
+
+</body>
+</html>
