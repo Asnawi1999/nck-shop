@@ -1,0 +1,22 @@
+NCK ADMIN
+VIEW PUBLIC STORE ↗
+STORE MANAGEMENT
+Product dashboard
+Manage your single featured product.
+WORKSPACE
+▣   Product
+▤   Orders (coming soon)
+◷   Sales (coming soon)
+Product details
+Edit the product shown on your public storefront.
+PRODUCT NAME
+Essential Everyday Tee
+DESCRIPTION
+A clean everyday essential. Minimal design, comfortable fit and made to style your way.
+PRICE (RM)
+STOCK QUANTITY (DISPLAY ONLY)
+PRODUCT IMAGE
+SAVE CHANGES
+RESET SAMPLE
+
+Prototype limitation: This demo has no secure owner login, online database, live stock control, order management, sales tracking or payment processing. Data is saved only in this browser on this device using local storage. Do not publish this admin page as a secure private dashboard yet. These features require a protected backend and database before the shop goes live.
